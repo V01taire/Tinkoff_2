@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>edu.java</groupId>
-    <artifactId>root</artifactId>
+    <artifactId>Tinkoff_2</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
 
