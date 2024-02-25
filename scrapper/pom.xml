@@ -5,7 +5,7 @@
 
     <parent>
         <groupId>edu.java</groupId>
-        <artifactId>root</artifactId>
+        <artifactId>Tinkoff_2</artifactId>
         <version>${revision}</version>
     </parent>
 
