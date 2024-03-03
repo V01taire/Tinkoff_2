@@ -1,0 +1,21 @@
+app:
+  scheduler:
+    enable: false
+    interval: 10s
+    force-check-delay: 10s
+  stackoverflowBaseUrl: https://api.stackexchange.com/2.3
+  githubBaseUrl: https://api.github.com
+
+spring-doc:
+  swagger-ui:
+    path: /swagger-ui
+
+spring:
+  application:
+    name: scrapper
+
+server:
+  port: 8080
+
+logging:
+  config: classpath:log4j2-plain.xml
