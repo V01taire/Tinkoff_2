@@ -32,10 +32,10 @@ public class UntrackCommandTest {
         Mockito.when(update.message()).thenReturn(message);
         Mockito.when(message.chat()).thenReturn(chat);
         Mockito.when(chat.id()).thenReturn(1L);
-        Mockito.when(message.text()).thenReturn("/untrack https://github.com/Andrey582/NotificationBot");
+        Mockito.when(message.text()).thenReturn("/untrack https://github.com/V0ltaire/tinkoffBot");
 
-        String result = handler.handleCommand(update).getParameters().get("text").toString();
-        String expected = "https://github.com/Andrey582/NotificationBot была удалена.";
+        String result = handler.handleCommand(update).block().getParameters().get("text").toString();
+        String expected = "Не удалось найти ссылку.";
 
         assertThat(result)
             .isEqualTo(expected);
@@ -51,7 +51,7 @@ public class UntrackCommandTest {
         Mockito.when(chat.id()).thenReturn(1L);
         Mockito.when(message.text()).thenReturn("/untrack");
 
-        String result = handler.handleCommand(update).getParameters().get("text").toString();
+        String result = handler.handleCommand(update).block().getParameters().get("text").toString();
         String expected = "Команда должна иметь вид \'/untrack link | name\'.";
 
         assertThat(result)

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
+import edu.java.exception.exception.LinkNotFoundException;
 
 @RestControllerAdvice
 public class LinkExceptionHandler {
@@ -30,8 +31,20 @@ public class LinkExceptionHandler {
     @ResponseStatus(value = HttpStatus.CONFLICT)
     public ErrorMessage linkAlreadyTrackedExceptionHandler(UserHasNoLinkException ex, WebRequest request) {
         return new ErrorMessage(
-            "Can`t add link.",
+            "Link already tracked.",
             String.valueOf(HttpStatus.NOT_ACCEPTABLE.value()),
+            ex.getClass().getName(),
+            ex.getMessage(),
+            Arrays.stream(ex.getStackTrace()).map(StackTraceElement::toString).collect(Collectors.toList())
+        );
+    }
+
+    @ExceptionHandler(LinkNotFoundException.class)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    public ErrorMessage linkNotFoundExceptionHandler(LinkNotFoundException ex, WebRequest request) {
+        return new ErrorMessage(
+            "Link not found.",
+            String.valueOf(HttpStatus.NOT_FOUND.value()),
             ex.getClass().getName(),
             ex.getMessage(),
             Arrays.stream(ex.getStackTrace()).map(StackTraceElement::toString).collect(Collectors.toList())

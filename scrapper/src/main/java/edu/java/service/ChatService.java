@@ -6,23 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
-@Service
-public class ChatService {
+public interface ChatService {
+    void register(Long chatId);
 
-    List<Long> usersStub = new ArrayList<>();
-
-    public void create(Long id) {
-        if (usersStub.contains(id)) {
-            throw new UserAlreadyRegisteredException("User already registered.");
-        }
-        usersStub.add(id);
-    }
-
-    public void  delete(Long id) {
-        if (!usersStub.contains(id)) {
-            throw new UserNotRegisteredException("User not registered.");
-        }
-        usersStub.remove(id);
-    }
+    void unregister(Long chatId);
 
 }

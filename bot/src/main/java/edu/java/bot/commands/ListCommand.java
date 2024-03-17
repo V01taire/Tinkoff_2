@@ -5,11 +5,12 @@ import com.pengrad.telegrambot.request.SendMessage;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Mono;
 
 @Component
 public class ListCommand implements Command {
 
-    private static final String EMPTY_LINKS = "В списке нет отслеживаемых ссылок";
+    public static final String EMPTY_LINKS = "В списке нет отслеживаемых ссылок";
     private static final String COMMAND = "/list";
     private static final String COMMAND_DESCRIPTION = "Команда выводящая список всех отслеживаемых ссылок.";
     private List<String> links = new ArrayList<>();
@@ -25,7 +26,7 @@ public class ListCommand implements Command {
     }
 
     @Override
-    public SendMessage handle(Update update) {
+    public Mono<SendMessage> handle(Update update) {
         return new SendMessage(
             update.message().chat().id(),
             getLinks()

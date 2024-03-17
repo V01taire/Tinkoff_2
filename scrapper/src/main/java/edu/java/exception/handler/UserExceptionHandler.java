@@ -18,7 +18,7 @@ public class UserExceptionHandler {
     @ResponseStatus(value = HttpStatus.NOT_ACCEPTABLE)
     public ErrorMessage userAlreadyRegisteredExceptionHandler(UserAlreadyRegisteredException ex, WebRequest request) {
         return new ErrorMessage(
-            "Can`t register user.",
+            "User already registered.",
             String.valueOf(HttpStatus.NOT_ACCEPTABLE.value()),
             ex.getClass().getName(),
             ex.getMessage(),
@@ -30,7 +30,7 @@ public class UserExceptionHandler {
     @ResponseStatus(value = HttpStatus.NOT_ACCEPTABLE)
     public ErrorMessage userNotRegisteredExceptionHandler(UserNotRegisteredException ex, WebRequest request) {
         return new ErrorMessage(
-            "Can`t delete user.",
+            "User not register.",
             String.valueOf(HttpStatus.NOT_ACCEPTABLE.value()),
             ex.getClass().getName(),
             ex.getMessage(),

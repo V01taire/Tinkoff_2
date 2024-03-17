@@ -1,6 +1,5 @@
 package edu.java.bot.controller;
 
-import edu.java.bot.dto.LinkUpdateDto;
 import edu.java.bot.service.BotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

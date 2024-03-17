@@ -1,14 +1,21 @@
 app:
   scheduler:
-    enable: false
-    interval: 10s
-    force-check-delay: 10s
-  stackoverflowBaseUrl: http://localhost:8080/2.3
-  githubBaseUrl: http://localhost:8080
+    enable: true
+    interval: 15s
+    force-check-delay: 30s
+  stackoverflowBaseUrl: https://api.stackexchange.com/2.3
+  githubBaseUrl: https://api.github.com
+  botBaseUrl: ${BOT_BASE_URL}
+  githubAccessToken: ${GIT_HUB_ACCESS_TOKEN}
 
 spring:
   application:
     name: scrapper
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driverClassName: org.postgresql.Driver
 
 server:
   port: 8080
