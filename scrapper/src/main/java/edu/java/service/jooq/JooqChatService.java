@@ -1,32 +1,27 @@
-package edu.java.service.jdbc;
-
-import edu.java.database.repository.ChatRepository;
+package edu.java.service.jooq;
+import edu.java.database.jooq.repository.JooqChatRepository;
 import edu.java.exception.exception.UserAlreadyRegisteredException;
 import edu.java.exception.exception.UserNotRegisteredException;
 import edu.java.service.ChatService;
-import org.springframework.beans.factory.annotation.Autowired;
 
-public class JdbcChatService implements ChatService {
+public class JooqChatService implements ChatService {
 
-    ChatRepository chatRepository;
+    JooqChatRepository jooqChatRepository;
 
-    public JdbcChatService(JdbcChatRepository jdbcChatRepository) {
-        this.jdbcChatRepository = jdbcChatRepository;
+    public JooqChatService(JooqChatRepository jooqChatRepository) {
+        this.jooqChatRepository = jooqChatRepository;
     }
 
     @Override
     public void register(Long chatId) {
-        if (chatRepository.add(chatId) == null) {
+        if (jooqChatRepository.add(chatId) == null) {
             throw new UserAlreadyRegisteredException("Can`t register user.");
         }
     }
-
     @Override
     public void unregister(Long chatId) {
-        if (chatRepository.remove(chatId) == null) {
+        if (jooqChatRepository.remove(chatId) == null) {
             throw new UserNotRegisteredException("Can`t delete user.");
         }
     }
-
-
 }

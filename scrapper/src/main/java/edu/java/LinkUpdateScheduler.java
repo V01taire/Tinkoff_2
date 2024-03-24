@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
-import edu.java.updater.JdbcLinkUpdater;
 import org.springframework.beans.factory.annotation.Autowired;
+import edu.java.updater.LinkUpdater;
 
 @Configuration
 @EnableScheduling
@@ -19,11 +19,11 @@ public class LinkUpdateScheduler {
 
     public static final Logger LOGGER = LogManager.getLogger(LinkUpdateScheduler.class);
     @Autowired
-    JdbcLinkUpdater updater;
+    LinkUpdater linkUpdater;
 
     @Scheduled(fixedDelayString = "#{ @scheduler.interval }")
     public void update() {
         LOGGER.info("update");
-        updater.update();
+        linkUpdater.update();
     }
 }

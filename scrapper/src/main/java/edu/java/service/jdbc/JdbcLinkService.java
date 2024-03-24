@@ -19,15 +19,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @SuppressWarnings("MultipleStringLiterals")
-@Service
 public class JdbcLinkService implements LinkService {
 
-    @Autowired
     LinkRepository linkRepository;
-    @Autowired
     ChatRepository chatRepository;
-    @Autowired
     ChatToLinkRepository chatToLinkRepository;
+
+    public JdbcLinkService(
+        JdbcLinkRepository jdbcLinkRepository,
+        JdbcChatRepository jdbcChatRepository,
+        JdbcChatToLinkRepository jdbcChatToLinkRepository
+    ) {
+        this.jdbcLinkRepository = jdbcLinkRepository;
+        this.jdbcChatRepository = jdbcChatRepository;
+        this.jdbcChatToLinkRepository = jdbcChatToLinkRepository;
+    }
 
     @Override
     public LinkResponseDto create(Long chatId, LinkRequestDto body) {
